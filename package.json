@@ -1,0 +1,27 @@
+{
+  "name": "scrapingjs",
+  "version": "0.0.1",
+  "description": "Simple HTML scraper which aims to show thumb, title and description.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --harmony"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/shota/scrapingjs.git"
+  },
+  "devDependencies": {
+    "co-mocha": "^1.1.0",
+    "coffee-script": "^1.9.2",
+    "lodash": "^3.9.3",
+    "mocha": "^2.2.5",
+    "should": "^6.0.3"
+  },
+  "dependencies": {
+    "cheerio": "^0.19.0",
+    "koa-request": "^1.0.0"
+  },
+  "engines": {
+    "node": ">= 0.12"
+  }
+}
