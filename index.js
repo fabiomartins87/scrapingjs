@@ -8,15 +8,14 @@
   request = require('koa-request');
 
   fetch = function*(url) {
-    var options, response;
+    var options;
     options = {
       url: url,
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36 scrapingjs(0.0.1)'
       }
     };
-    response = (yield request(options));
-    return response.body;
+    return (yield request(options));
   };
 
   parseTitle = function($) {
@@ -53,15 +52,15 @@
   };
 
   module.exports.scrape = function*(url) {
-    var $, html, res;
-    html = (yield fetch(url));
-    $ = cheerio.load(html);
+    var $, res, response;
+    response = (yield fetch(url));
+    $ = cheerio.load(response.body);
     res = {
       title: parseTitle($),
       description: parseDescription($),
       thumbnail_url: parseImage($),
       sitename: parseSitename($),
-      url: url
+      url: response.request.uri.href
     };
     return res;
   };

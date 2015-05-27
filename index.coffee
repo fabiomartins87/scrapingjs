@@ -7,8 +7,7 @@ fetch = (url) ->
   options =
     url: url,
     headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36 scrapingjs(0.0.1)' }
-  response = yield request(options)
-  return response.body
+  yield request(options)
 
 parseTitle = ($) ->
   # first grabbing title tag, after that choose first h1
@@ -38,8 +37,8 @@ parseSitename = ($) ->
   sitename
 
 module.exports.scrape = (url) ->
-  html = yield fetch(url)
-  $ = cheerio.load(html)
+  response = yield fetch(url)
+  $ = cheerio.load(response.body)
 
   #TODO: url normalization???
 
@@ -48,5 +47,5 @@ module.exports.scrape = (url) ->
     description: parseDescription($)
     thumbnail_url: parseImage($)
     sitename: parseSitename($)
-    url: url
+    url: response.request.uri.href
   return res
