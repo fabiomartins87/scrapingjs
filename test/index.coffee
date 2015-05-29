@@ -6,6 +6,17 @@ scrapingjs = require('../')
 describe 'crawling test', ->
   instance = null
 
+  it 'crawls http://www.google.co.jp/', ->
+    row = yield scrapingjs.scrape("http://www.google.co.jp")
+
+    #assert.equal row.title, 'Yahoo! JAPAN'
+    assert.ok !!row.description
+    assert.ok !!row.thumbnail_url
+    assert.ok !!row.sitename
+    #assert.equal row.url, "http://www.yahoo.co.jp/"
+
+    return
+
   it 'crawls http://www.yahoo.co.jp/', ->
     row = yield scrapingjs.scrape("http://www.yahoo.co.jp")
 

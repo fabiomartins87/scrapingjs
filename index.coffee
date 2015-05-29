@@ -23,10 +23,9 @@ parseDescription = ($) ->
     description = $('meta[property="og:description"]').attr('content')
   description
 
-parseImage = ($) ->
+parseImage = ($, uri) ->
   ogimage = $('meta[property="og:image"]').attr('content')
-  unless ogimage
-    ogimage = $('img').eq(0).attr('src')
+
   ogimage
 
 parseSitename = ($) ->
@@ -45,7 +44,7 @@ module.exports.scrape = (url) ->
   res =
     title: parseTitle($)
     description: parseDescription($)
-    thumbnail_url: parseImage($)
+    thumbnail_url: parseImage($, response.request.uri)
     sitename: parseSitename($)
     url: response.request.uri.href
   return res

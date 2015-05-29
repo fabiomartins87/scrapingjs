@@ -36,12 +36,9 @@
     return description;
   };
 
-  parseImage = function($) {
+  parseImage = function($, uri) {
     var ogimage;
     ogimage = $('meta[property="og:image"]').attr('content');
-    if (!ogimage) {
-      ogimage = $('img').eq(0).attr('src');
-    }
     return ogimage;
   };
 
@@ -58,7 +55,7 @@
     res = {
       title: parseTitle($),
       description: parseDescription($),
-      thumbnail_url: parseImage($),
+      thumbnail_url: parseImage($, response.request.uri),
       sitename: parseSitename($),
       url: response.request.uri.href
     };
