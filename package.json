@@ -1,6 +1,6 @@
 {
   "name": "scrapingjs",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Simple HTML scraper which aims to show thumb, title and description.",
   "main": "index.js",
   "scripts": {
